@@ -1,0 +1,31 @@
+<!-- Modal -->
+<div class="modal fade" id="studentdetailModal{{ student.pk }}" tabindex="-1" aria-labelledby="ModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content shadow">
+            <div class="modal-header">
+                <h5 class="modal-title" id="ModalLabel">Student detail</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" id="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <dl>
+                            <dt class="text-muted">Class:</dt>
+                            <dd class="ps-3">{{ student.class_id }}</dd>
+                            <dt class="text-muted">Fullname:</dt>
+                            <dd class="ps-3">{{ student.nom }} {{ student.prenom }}</dd>
+                            <dt class="text-muted">Gender:</dt>
+                            <dd class="ps-3">{{ student.gender }}</dd>
+                            <dt class="text-muted">Birthday:</dt>
+                            <dd class="ps-3">{{ student.dob|date:"d F Y" }} à {{ student.pob }}</dd>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

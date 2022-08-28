@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Webpage Title -->
+    {% if page_title %}
+    <title>{{ page_title }} | School Management System</title>
+    {% else %}
+    <title>School Management System</title>
+    {% endif %}
+    {% load static %}
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'asset/css/bootstrap.min.css'%}">
+    <!-- Font-Awesome CSS -->
+    <link rel="stylesheet" href="{% static 'asset/css/all.css' %}">
+    <link rel="stylesheet" href="{% static 'asset/css/fontawesome.min.css'%}">
+    {% block headContent %}
+    {% endblock headContent %}
+</head>
+
+<body>
+    <main class="main m-3">
+        <header>
+            {% block topnav %}
+            {% endblock topnav %}
+        </header>
+        <div class="container">
+            {% include 'messages.html' %}
+            {% block content %}
+            {% endblock content %}
+        </div>
+    </main>
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    {% block javascript %}
+    <!-- Jquery -->
+    <script language="JavaScript" type="text/javascript" src="{% static 'asset/js/jquery.min.js'%}"></script>
+    <!-- Bootstrap JS and its dependencies-->
+    <script language="JavaScript" type="text/javascript" src="{% static 'asset/js/bootstrap.bundle.min.js'%}"></script>
+    <!-- Your stuff: Third-party javascript libraries go here -->
+
+
+    <!-- place project specific Javascript in this file -->
+    {% endblock javascript %}
+</body>
+
+</html>

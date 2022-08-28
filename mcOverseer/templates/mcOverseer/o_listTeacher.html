@@ -1,0 +1,58 @@
+{% extends 'basedash.html' %}
+{% load static %}
+
+{% block headContent %}
+<script language="JavaScript" type="module" src="{% static 'asset/js/listTeacher.js'%}"></script>
+{% endblock headContent %}
+
+{% block content %}
+<style>
+    .noundline {
+        text-decoration: none;
+    }
+
+    .not-visible {
+        display: none;
+    }
+
+    h1 {
+        color: white;
+    }
+
+</style>
+<div class="text-center">
+    <div class="spinner-border text-primary" role="status" id="spinner"></div>
+</div>
+
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <div class="card card-default rounded-0 shadow ">
+        <div class="card-header">
+            <div class="d-flex w-100 align-items-center justify-content-between">
+                <h4 class="card-title fw-bold">Teacher List</h4>
+                <div class="tools">
+                    <a class="btn btn-info rounded-0 bg-gradient btn-sm" href="{% url 'mcOverseer:AddTeacher' %}"
+                        title="Add Class"><i class="fa fa-solid fa-plus"></i> Add Teacher
+                    </a>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="container-fluid">
+                <table class="table table-hover table-bordered">
+                    <thead>
+                        <tr class="bg-danger bg-opacity-0 text-light">
+                            <th scope="col" class="px-2 py-2 text-center">Nom et Prénoms</th>
+                            <th scope="col" class="px-2 py-2 text-center">Gender</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table-body-box">
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

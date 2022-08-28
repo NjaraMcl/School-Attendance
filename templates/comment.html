@@ -1,0 +1,48 @@
+{% for teacher in listTeacher %}
+<tr>
+    <td class="px-2 py-1 align-middle text-center">
+        {{ teacher.nom }} {{ teacher.prenom }}
+    </td>
+    <td class="px-2 py-1 align-middle text-center">
+        {% if teacher.gender == "Male" %}
+        M
+        {% else%}
+        F
+        {% endif %}
+    </td>
+</tr>
+{% endfor %}
+{% for classe in listClass %}
+<tr>
+    <td class="px-2 py-1 align-middle text-center">
+        <a class="link-dark noundline" href="{% url 'mcOverseer:dashClass' pk=classe.pk %}">
+            {{ classe.Classe_name }} ( {{ classe.school_year }} )
+        </a>
+    </td>
+    <td class="px-2 py-1 align-middle text-center">
+        <div class="col">
+            <a class="btn btn-outline-info btn-sm link-dark noundline" href="#"
+                title="See Attendace of {{ classe.Classe_name }}"><i class="fa fa-eye"></i>
+            </a>
+            <a class="btn btn-outline-primary btn-sm link-dark noundline" href="#"
+                title="Add Attendace to {{ classe.Classe_name }}"><i class="fa fa-edit"></i>
+            </a>
+        </div>
+    </td>
+</tr>
+{% endfor %}
+{% for student in listStuds %}
+<tr>
+    <td class="text-center">{{ student.student_code }}</td>
+    <td class="text-center">
+        <a class="link-dark noundline" id="myBtn" data-bs-toggle="modal"
+            data-bs-target="#studentdetailModal{{ student.pk }}" href="javascript:void(0)"
+            data-url="{% url 'mcOverseer:o_studentdetail-modal' student.pk %}" data-target="#modal" title="View Details"
+            data-tooltip>
+            {{ student.nom }} {{ student.prenom }}
+        </a>
+    </td>
+    <td class="text-center">{{ student.student_code }}</td>
+</tr>
+{% include "mcOverseer/o_student_details.html" %}
+{% endfor %}

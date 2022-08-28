@@ -1,0 +1,91 @@
+{% extends 'basedash.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+    .noundline {
+        text-decoration: none;
+    }
+
+    .not-visible {
+        display: none;
+    }
+
+</style>
+<div class="text-center">
+    <div class="spinner-border" role="status" id="spinner"></div>
+</div>
+
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <div class="card card-default rounded-0 shadow ">
+        <div class="card-header">
+            <div class="d-flex w-100 align-items-center justify-content-between">
+                <h4 class="card-title fw-bold" id="catp">List: {{ klasname }} ({{ skooY }})</h4>
+                <div class="tools">
+                    <a class="btn btn-info rounded-0 bg-gradient btn-sm" href="{% url 'mcOverseer:AddStudentes' %}"
+                        title="Add Studdent"><i class="fa fa-solid fa-plus"></i> Add Student
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="container-fluid">
+                <table class="table table-hover table-borderless">
+                    </caption>
+                    <thead>
+                        <tr>
+                            <th scope="col" class="text-center">Student Code</th>
+                            <th scope="col" class="text-center">Nom et Prénoms</th>
+                            <th scope="col" class="text-center">Gender</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table-body-box">
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="module">
+    const spinner = document.getElementById('spinner')
+    const tableBody = document.getElementById('table-body-box')
+    var testdata = JSON.parse('{{ testDT | safe }}')
+
+    for (var item of testdata) {
+        console.log(item.fields)
+    }
+
+
+    if ('{{listStuds}}') {
+        setTimeout(() => {
+            spinner.classList.add('not-visible')
+            tableBody.innerHTML += `
+                {% for student in listStuds %}
+                    <tr>
+                        <td class="text-center">{{ student.student_code }}</td>
+                        <td class="text-center">
+                            <a class="link-dark noundline" id="myBtn" data-bs-toggle="modal"
+                                data-bs-target="#studentdetailModal{{ student.pk }}" href="javascript:void(0)"
+                                data-url="{% url 'mcOverseer:o_studentdetail-modal' student.pk %}"
+                                data-target="#modal" title="View Details" data-tooltip>
+                                {{ student.nom }} {{ student.prenom }}
+                            </a>
+                        </td>
+                        <td class="text-center">{{ student.student_code }}</td>
+                    </tr>
+                    {% include "mcOverseer/o_student_details.html" %}
+                {% endfor %}
+                `
+        }, 500)
+    } else {
+        setTimeout(() => {
+            spinner.classList.add('not-visible')
+            tableBody.innerHTML += `
+                <p>Failed to load data</p>
+                `
+        }, 500)
+    }
+</script>
+{% endblock %}

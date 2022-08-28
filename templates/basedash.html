@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Webpage Title -->
+    {% if page_title %}
+    <title>{{ page_title }} | School Management System</title>
+    {% else %}
+    <title>School Management System</title>
+    {% endif %}
+    {% load static %}
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'asset/css/bootstrap.min.css'%}">
+    <!-- Font-Awesome CSS -->
+    <link rel="stylesheet" href="{% static 'asset/css/all.css' %}">
+    <link rel="stylesheet" href="{% static 'asset/css/fontawesome.min.css'%}">
+
+    {% block headContent %}
+    {% endblock headContent %}
+    <link rel="stylesheet" href="{% static 'asset/css/main_b2.css'%}">
+    <link rel="stylesheet" href="{% static 'asset/css/side_b2.css'%}">
+</head>
+
+<body>
+    <div class="layout  has-sidebar" id="layout">
+        {% include 'sidenav.html' %}
+        <div id="overlay" class="overlay"></div>
+        <div class="layout cntlayout">
+            <header class="header">
+                <a id="btn-collapse" href="#">
+                    <i class="fa fa-solid fa-bars"></i>
+                </a>
+                <a id="btn-toggle" href="#" class="sidebar-toggler break-point-lg">
+                    <i class="fa fa-solid fa-bars"></i>
+                </a>
+            </header>
+            {% include 'messages.html' %}
+            <main class="cont">
+                {% block content %}
+                {% endblock content %}
+            </main>
+            <footer class="footer">
+                <small style="margin-bottom: 20px; display: inline-block">
+                    © 2022 made with
+                    <span style="color: red; font-size: 18px">&#10084;</span> by -
+                    <a target="_blank" href="#"> Anjara </a>
+                </small>
+            </footer>
+        </div>
+    </div>
+    <script type="module">
+
+    </script>
+    <script language="JavaScript" type="text/javascript" src="{% static 'asset/js/bootstrap.bundle.min.js'%}"></script>
+    <!-- Jquery -->
+    <script language="JavaScript" type="text/javascript" src="{% static 'asset/js/jquery.min.js'%}"></script>
+</body>
+
+</html>
