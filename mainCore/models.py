@@ -44,18 +44,14 @@ class Classe(models.Model):
 
 
 class Eleve(models.Model):
-    user = models.OneToOneField(
-        User, on_delete=models.CASCADE, db_constraint=False, null=True
-    )
+    user = models.OneToOneField(User, on_delete=models.CASCADE, db_constraint=False)
     student_code = models.CharField(max_length=250, blank=True, null=True)
     nom = models.CharField(max_length=250, blank=True, null=True)
     prenom = models.CharField(max_length=250, blank=True, null=True)
     dob = models.DateField(default="1980-01-01", blank=True, null=True)
     pob = models.CharField(max_length=250, blank=True, null=True)
     gender = models.CharField(max_length=10, choices=sex_choice, blank=True, null=True)
-    class_id = models.ForeignKey(
-        Classe, blank=True, null=True, on_delete=models.DO_NOTHING
-    )
+    class_id = models.ForeignKey(Classe, on_delete=models.DO_NOTHING)
     date_added = models.DateTimeField(default=timezone.now)
     date_updated = models.DateTimeField(auto_now=True)
 
