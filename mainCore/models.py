@@ -51,7 +51,7 @@ class Eleve(models.Model):
     dob = models.DateField(default="1980-01-01", blank=True, null=True)
     pob = models.CharField(max_length=250, blank=True, null=True)
     gender = models.CharField(max_length=10, choices=sex_choice, blank=True, null=True)
-    class_id = models.ForeignKey(Classe, on_delete=models.SET_NULL)
+    class_id = models.ForeignKey(Classe, on_delete=models.SET_DEFAULT)
     date_added = models.DateTimeField(default=timezone.now)
     date_updated = models.DateTimeField(auto_now=True)
 
