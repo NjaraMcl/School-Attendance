@@ -154,6 +154,7 @@ class AddStudentes(LoginRequiredMixin, generic.TemplateView):
 
     def post(self, request, *args, **kwargs):
         form = self.form_class(request.POST)
+        stdt_cd = request.POST.get("student_code")
         name = request.POST.get("nom")
         name1 = request.POST.get("prenom")
         username = f"{name}_{name1}"
@@ -171,6 +172,7 @@ class AddStudentes(LoginRequiredMixin, generic.TemplateView):
                 is_student=True,
             )
             Eleve.objects.create(
+                student_code=stdt_cd,
                 user=user,
                 nom=name,
                 prenom=name1,
@@ -231,10 +233,10 @@ class confirm(LoginRequiredMixin, generic.TemplateView):
         for student in listStuds:
             status = request.POST[student.student_code]
             if status != "present":
-                status = "False"
-            status = "True"
+                statu = "False"
+            statu = "True"
             date_ = request.POST["mydate"]
-            a = Presence(student=student, attendance_date=date_, status=status)
+            a = Presence(student=student, attendance_date=date_, status=statu)
             a.save()
         return HttpResponse("Ok")
 
