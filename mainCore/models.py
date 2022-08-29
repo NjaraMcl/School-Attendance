@@ -44,7 +44,9 @@ class Classe(models.Model):
 
 
 class Eleve(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
+    user = models.OneToOneField(
+        User, on_delete=models.CASCADE, db_constraint=False, null=True
+    )
     student_code = models.CharField(max_length=250, blank=True, null=True)
     nom = models.CharField(max_length=250, blank=True, null=True)
     prenom = models.CharField(max_length=250, blank=True, null=True)
